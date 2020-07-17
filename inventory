@@ -1,0 +1,69 @@
+/*Shihab Sadekatul
+1821581*/
+
+#include<iostream>
+#include<iomanip>
+
+void inpInventory(int inventory[3][4]);
+void dispInventory(int inventory[3][4]);
+int calcInventory(int inventory[3][4], int i);
+
+using namespace std;
+
+
+
+int main(void)
+{
+	int inventory [3][4];
+	inpInventory(inventory);
+	dispInventory(inventory);
+    
+	return 0;
+}
+
+
+void inpInventory(int inventory[3][4])
+{
+    int id,price,quantiy,order_qty;
+    
+    cout <<"Insert the value of stocks"<<endl;
+    
+    for(int i = 0; i<3 ; i++)
+	{
+        cout<<"Stock ID: ";
+        cin >> id;
+        inventory[i][0] = id;
+        cout<<"Price/unit:";
+        cin>>price;
+        inventory[i][1] = price;
+        cout<<"Current Quantity:";
+        cin >>quantiy;
+        inventory[i][2] = quantiy;
+        cout<<"Order Quantity:";
+        cin >> order_qty;
+        
+        inventory[i][3] = order_qty;
+    }
+}
+
+void dispInventory(int inventory[3][4])
+{
+    cout<<"ID"<<"\tPrice/Unit" <<"\tCurrent Qty" <<"\t#Ordered Qty" <<"\tAmount(RM)"<<endl;
+    cout<<"--"<<"\t"<<"---------"<<"\t" <<"-----------"<<"\t" <<"------------"<<"\t" <<"---------"<<endl;
+    
+    for(int i = 0; i<3; i++)
+	{
+        int amount = calcInventory(inventory,i);
+        cout<<inventory[i][0]<<"\t\t" << inventory[i][1] <<"\t\t"<< inventory[i][2]<<"\t\t"<<inventory[i][3]<<"\t\t"<<amount<<endl;
+
+    }
+}
+
+int calcInventory(int inventory[3][4], int i)
+{
+    int amount = 0;
+    
+    amount = (inventory[i][2] - inventory[i][3]) * inventory[i][1];
+    
+    return amount;
+}
